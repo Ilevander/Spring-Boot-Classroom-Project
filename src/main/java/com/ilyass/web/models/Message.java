@@ -1,7 +1,6 @@
 package com.ilyass.web.models;
 
 import java.util.Date;
-import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,14 +17,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name="thread")
-public class Thread {
+@Table(name="messages")
+public class Message {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int threadId;
-    private String threadTitle;
-    private int creatorId;
-    private Date createdDate;
-    private List<Message> messages;
+	private int messageId;
+    private int senderId;
+    private int receiverId;
+    private String messageContent;
+    private Date timestamp;
+    
 }
