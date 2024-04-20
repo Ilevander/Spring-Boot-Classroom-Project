@@ -35,6 +35,9 @@ public class Instructor {
     private String bio;
     private String profilePicture;
 
+    private String password;
+    private String passwordConfirm;
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "instructor_course",
             joinColumns = @JoinColumn(name = "instructor_id"),

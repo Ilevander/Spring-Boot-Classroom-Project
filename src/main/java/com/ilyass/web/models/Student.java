@@ -36,6 +36,9 @@ public class Student {
     private String address;
     private Date enrollmentDate;
 
+    private String password;
+    private String passwordConfirm;
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "student_course",
             joinColumns = @JoinColumn(name = "student_id"),
