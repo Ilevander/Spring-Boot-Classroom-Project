@@ -31,4 +31,8 @@ public class AssignmentMapper {
                 .map(entity -> modelMapper.map(entity, AssignmentDto.class))
                 .collect(Collectors.toList());
     }
+
+    public static void updateAssignmentFromDto(Assignment assignment, AssignmentDto assignmentDto) {
+        modelMapper.map(assignmentDto, assignment);
+    }
 }

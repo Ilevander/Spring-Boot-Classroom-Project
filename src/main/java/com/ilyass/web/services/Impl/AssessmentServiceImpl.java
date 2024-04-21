@@ -9,7 +9,7 @@ import com.ilyass.web.dto.AssessmentDto;
 import com.ilyass.web.mapper.AssessmentMapper;
 import com.ilyass.web.models.Assessment;
 import com.ilyass.web.repositories.AssessmentRepository;
-import com.ilyass.web.services.AssessmentService; 
+import com.ilyass.web.services.AssessmentService;
 
 @Service
 public class AssessmentServiceImpl implements AssessmentService {

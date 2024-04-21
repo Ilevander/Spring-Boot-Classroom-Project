@@ -1,5 +1,6 @@
 package com.ilyass.web.services.Impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import com.ilyass.web.dto.AssignmentDto;
 import com.ilyass.web.mapper.AssignmentMapper;
 import com.ilyass.web.models.Assignment;
 import com.ilyass.web.repositories.AssignmentRepository;
-import com.ilyass.web.services.AssignmentService; 
+import com.ilyass.web.services.AssignmentService;
 
 @Service
 public class AssignmentServiceImpl implements AssignmentService {
@@ -53,7 +54,7 @@ public class AssignmentServiceImpl implements AssignmentService {
     }
 
     @Override
-    public void createAssignment(AssignmentDto assignmentDto) {
+    public void createAssignment(AssignmentDto assignmentDto) { 
         Assignment assignment = AssignmentMapper.mapToAssignment(assignmentDto);
         assignmentRepository.save(assignment);
     }
@@ -62,13 +63,12 @@ public class AssignmentServiceImpl implements AssignmentService {
     public void updateAssignment(int assignmentId, AssignmentDto assignmentDto) {
         Assignment existingAssignment = assignmentRepository.findById(assignmentId)
                 .orElseThrow(() -> new RuntimeException("Assignment not found"));
-        Assignment updatedAssignment = AssignmentMapper.mapToAssignment(assignmentDto);
-        updatedAssignment.setAssignmentId(existingAssignment.getAssignmentId());
-        assignmentRepository.save(updatedAssignment);
+        AssignmentMapper.updateAssignmentFromDto(existingAssignment, assignmentDto);
+        assignmentRepository.save(existingAssignment);
     }
 
     @Override
     public void deleteAssignment(int assignmentId) {
         assignmentRepository.deleteById(assignmentId);
     }
-}
+}  
