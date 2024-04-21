@@ -5,7 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
-
+/*
+ * DTO Data Transfer Object
+ */
 @Data
 @Builder
 public class LessonDto {
