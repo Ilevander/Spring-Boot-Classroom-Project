@@ -1,27 +1,35 @@
 package com.ilyass.web.mapper;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+
 import com.ilyass.web.dto.AssessmentDto;
 import com.ilyass.web.models.Assessment;
 
-import java.util.stream.Collectors;
-
 public class AssessmentMapper {
 
+    private static final ModelMapper modelMapper = new ModelMapper();
+
     public static Assessment mapToAssessment(AssessmentDto assessmentDto) {
-        return Assessment.builder()
-                .assessmentId(assessmentDto.getAssessmentId())
-                .assessmentName(assessmentDto.getAssessmentName())
-                .type(assessmentDto.getType())
-                .duration(assessmentDto.getDuration())
-                .build();
+        return modelMapper.map(assessmentDto, Assessment.class);
     }
 
     public static AssessmentDto mapToAssessmentDto(Assessment assessment) {
-        return AssessmentDto.builder()
-                .assessmentId(assessment.getAssessmentId())
-                .assessmentName(assessment.getAssessmentName())
-                .type(assessment.getType())
-                .duration(assessment.getDuration())
-                .build();
+        return modelMapper.map(assessment, AssessmentDto.class);
+    }
+
+    public static List<Assessment> mapToAssessments(List<AssessmentDto> assessmentDtos) {
+        return assessmentDtos.stream() 
+                .map(dto -> modelMapper.map(dto, Assessment.class))
+                .collect(Collectors.toList());
+    }
+ 
+    public static List<AssessmentDto> mapToAssessmentDtos(List<Assessment> assessments) {
+        return assessments.stream()
+                .map(entity -> modelMapper.map(entity, AssessmentDto.class))
+                .collect(Collectors.toList());
     }
 }
+   
