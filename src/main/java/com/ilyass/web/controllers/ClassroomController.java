@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.annotation.Validated;
 
 import com.ilyass.web.dto.ClassroomDto;
 import com.ilyass.web.services.ClassroomService;
 
 @Controller
 @RequestMapping("/classrooms")
+@Validated
 public class ClassroomController {
 
     private final ClassroomService classroomService;
