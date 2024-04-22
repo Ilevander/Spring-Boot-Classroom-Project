@@ -13,4 +13,8 @@ public interface DiscussionForumRepository extends JpaRepository<DiscussionForum
 
     List<DiscussionForum> findByThreadsThreadIdIn(List<Integer> threadIds);
 
+    List<DiscussionForum> findByLocation(String location);
+
+    List<DiscussionForum> findByCapacity(int capacity);
+
 }
