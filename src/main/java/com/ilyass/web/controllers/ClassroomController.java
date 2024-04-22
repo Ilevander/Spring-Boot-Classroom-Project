@@ -2,8 +2,6 @@ package com.ilyass.web.controllers;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,14 +11,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.validation.annotation.Validated;
 
 import com.ilyass.web.dto.ClassroomDto;
 import com.ilyass.web.services.ClassroomService;
 
+import jakarta.validation.Valid;
+
 @Controller
 @RequestMapping("/classrooms")
-@Validated
 public class ClassroomController {
 
     private final ClassroomService classroomService;
@@ -61,7 +59,7 @@ public class ClassroomController {
         classroomService.createClassroom(classroomDto);
         return "redirect:/classrooms";
     }
-
+  
     @GetMapping("/{classroomId}/edit")
     public String editClassroomForm(@PathVariable("classroomId") int classroomId, Model model) {
         ClassroomDto classroomDto = classroomService.findClassroomById(classroomId);
@@ -71,8 +69,8 @@ public class ClassroomController {
 
     @PostMapping("/{classroomId}/edit")
     public String updateClassroom(@PathVariable("classroomId") int classroomId,
-                                   @Valid @ModelAttribute("classroom") ClassroomDto classroomDto,
-                                   BindingResult result, Model model) {
+                                  @Valid @ModelAttribute("classroom") ClassroomDto classroomDto,
+                                  BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("classroom", classroomDto);
             return "classroom-edit";
@@ -81,6 +79,7 @@ public class ClassroomController {
         classroomService.updateClassroom(classroomId, classroomDto);
         return "redirect:/classrooms";
     }
+
 
     @GetMapping("/{classroomId}/delete")
     public String deleteClassroom(@PathVariable("classroomId") int classroomId) {
